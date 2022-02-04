@@ -1,0 +1,31 @@
+[package]
+name = "prim_int_kind"
+version = "0.1.0"
+authors = ["Dmitrii Demenev <demenev.dmitriy1@gmail.com>"]
+edition = "2021"
+rust-version = "1.56.1" # https://github.com/foresterre/cargo-msrv
+description = "Enumeration whose variants represent kinds of primitive integers"
+documentation = "https://docs.rs/prim_int_kind"
+readme = "README.md"
+repository = "https://github.com/JohnScience/prim_int_kind"
+license = "MIT OR Apache-2.0"
+# license-file | not needed
+keywords = ["primitive", "integer"]
+categories = [] # https://crates.io/category_slugs
+# workspace | not needed
+# build | not needed
+# links | not needed
+# exclude | not needed
+autobins = false
+autoexamples = false
+autotests = false
+autobenches = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+thiserror = "1.0.30"
+konst = "0.2.13"
+
+[features]
+const_trait_impl = []
