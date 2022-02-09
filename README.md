@@ -81,7 +81,7 @@ fn main() {
     #[cfg(any(doc,test,doctest, feature = "const_trait_impl"))]
     const res_kind: Result<PrimIntKind, PrimIntKindParsingError> = PrimIntKind::from_str("u16");
     #[cfg(not(any(doc,test,doctest, feature = "const_trait_impl")))]
-    unimplemented!();
+    let res_kind: Result<PrimIntKind, PrimIntKindParsingError> = PrimIntKind::from_str("u16");
     assert_eq!(res_kind, Ok(PrimIntKind::U16));
 }
 ```
