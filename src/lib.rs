@@ -8,7 +8,7 @@ mod from_str;
 mod to_prim_int_kind;
 
 pub use from_str::PrimIntKindParsingError;
-pub use to_prim_int_kind::ToPrimIntKind;
+pub use to_prim_int_kind::ToPrimIntKindExt;
 
 /// Enumerates primitive integer kinds as per
 /// [Rust's reference](https://doc.rust-lang.org/reference/types/numeric.html#integer-types)

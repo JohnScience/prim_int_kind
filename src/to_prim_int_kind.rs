@@ -39,7 +39,9 @@ macro_rules! prim_int_kind_variant {
     };
 }
 
-pub trait ToPrimIntKind {
+/// Extension trait that for all primitive integers implements an associated function
+/// that returns a [`PrimIntKind`] representing a particular primitive integer.
+pub trait ToPrimIntKindExt {
     fn to_prim_int_kind() -> PrimIntKind;
 }
 
@@ -72,7 +74,7 @@ macro_rules! impl_trait {
 }
 
 impl_trait!(
-    ToPrimIntKind::to_prim_int_kind() -> PrimIntKind
+    ToPrimIntKindExt::to_prim_int_kind() -> PrimIntKind
         for @PRIM_INTS
         as prim_int_kind_variant
 );
