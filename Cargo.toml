@@ -26,6 +26,7 @@ autobenches = false
 [dependencies]
 thiserror = "1.0.30"
 konst = "0.2.13"
+just_prim_int = "0.1.0"
 
 [features]
 const_trait_impl = []
