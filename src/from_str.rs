@@ -6,40 +6,40 @@ use thiserror::Error;
 
 macro_rules! prim_int_kind_variant {
     (u8) => {
-        U8
+        U8(Default::default())
     };
     (u16) => {
-        U16
+        U16(Default::default())
     };
     (u32) => {
-        U32
+        U32(Default::default())
     };
     (u64) => {
-        U64
+        U64(Default::default())
     };
     (u128) => {
-        U128
+        U128(Default::default())
     };
     (usize) => {
-        Usize
+        Usize(Default::default())
     };
     (i8) => {
-        I8
+        I8(Default::default())
     };
     (i16) => {
-        I16
+        I16(Default::default())
     };
     (i32) => {
-        I32
+        I32(Default::default())
     };
     (i64) => {
-        I64
+        I64(Default::default())
     };
     (i128) => {
-        I128
+        I128(Default::default())
     };
     (isize) => {
-        Isize
+        Isize(Default::default())
     };
 }
 
@@ -58,7 +58,7 @@ macro_rules! prim_int_kind_variant {
 #[error("the provided &str is not that of a primitive integer")]
 pub struct PrimIntKindParsingError;
 
-#[cfg(any(doc, test, doctest, feature = "const_trait_impl"))]
+#[cfg(feature = "const_trait_impl")]
 macro_rules! impl_trait {
     (::$konst_crate:ident, $trait_name:ident, $t:ty, $macro_name:ident) => {
         impl const $trait_name for $t {
@@ -67,7 +67,7 @@ macro_rules! impl_trait {
     };
 }
 
-#[cfg(not(any(doc, test, doctest, feature = "const_trait_impl")))]
+#[cfg(not(feature = "const_trait_impl"))]
 macro_rules! impl_trait {
     (::$konst_crate:ident, $trait_name:ident, $t:ty, $macro_name:ident) => {
         impl $trait_name for $t {
@@ -118,7 +118,7 @@ mod tests {
     #[test]
     fn it_works() {
         let res_kind = "u16".parse();
-        assert_eq!(res_kind, Ok(PrimIntKind::U16));
+        matches!(res_kind, Ok(PrimIntKind::U16(_)));
     }
 
     #[test]

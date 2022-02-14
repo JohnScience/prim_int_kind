@@ -54,7 +54,7 @@ Stable Rust
 use prim_int_kind::PrimIntKind;
 
 let res_kind = "u16".parse();
-assert_eq!(res_kind, Ok(PrimIntKind::U16));
+matches!(res_kind, Ok(PrimIntKind::U16(_)));
 ```
 
 With `const_trait_impl` nightly feature
@@ -82,7 +82,7 @@ fn main() {
     const res_kind: Result<PrimIntKind, PrimIntKindParsingError> = PrimIntKind::from_str("u16");
     #[cfg(not(any(doc,test,doctest, feature = "const_trait_impl")))]
     let res_kind: Result<PrimIntKind, PrimIntKindParsingError> = PrimIntKind::from_str("u16");
-    assert_eq!(res_kind, Ok(PrimIntKind::U16));
+    matches!(res_kind, Ok(PrimIntKind::U16(_)));
 }
 ```
 

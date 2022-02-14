@@ -1,12 +1,11 @@
 #![doc = include_str!("../README.md")]
-#![cfg_attr(
-    any(doc, test, doctest, feature = "const_trait_impl"),
-    feature(const_trait_impl)
-)]
+#![cfg_attr(feature = "const_trait_impl", feature(const_trait_impl))]
+#![cfg_attr(feature = "const_default_impls", feature(const_default_impls))]
 
 mod from_str;
 mod to_prim_int_kind;
 
+pub use zst::ZST;
 pub use from_str::PrimIntKindParsingError;
 pub use to_prim_int_kind::ToPrimIntKindExt;
 
@@ -21,7 +20,7 @@ pub use to_prim_int_kind::ToPrimIntKindExt;
 /// use prim_int_kind::PrimIntKind;
 ///
 /// let res_kind = "u16".parse();
-/// assert_eq!(res_kind, Ok(PrimIntKind::U16));
+/// matches!(res_kind, Ok(PrimIntKind::U16(_)));
 /// ```
 ///
 /// With `const_trait_impl` nightly feature
@@ -48,20 +47,20 @@ pub use to_prim_int_kind::ToPrimIntKindExt;
 /// const res_kind: Result<PrimIntKind, PrimIntKindParsingError> = PrimIntKind::from_str("u16");
 /// #[cfg(not(any(doc,test,doctest, feature = "const_trait_impl")))]
 /// let res_kind: Result<PrimIntKind, PrimIntKindParsingError> = PrimIntKind::from_str("u16");
-/// assert_eq!(res_kind, Ok(PrimIntKind::U16));
+/// matches!(res_kind, Ok(PrimIntKind::U16(_)));
 /// ```
 #[derive(PartialEq, Eq, Debug)]
 pub enum PrimIntKind {
-    U8,
-    U16,
-    U32,
-    U64,
-    U128,
-    Usize,
-    I8,
-    I16,
-    I32,
-    I64,
-    I128,
-    Isize,
+    U8(ZST<u8>),
+    U16(ZST<u16>),
+    U32(ZST<u32>),
+    U64(ZST<u64>),
+    U128(ZST<u128>),
+    Usize(ZST<usize>),
+    I8(ZST<i8>),
+    I16(ZST<i16>),
+    I32(ZST<i32>),
+    I64(ZST<i64>),
+    I128(ZST<i128>),
+    Isize(ZST<isize>),
 }
